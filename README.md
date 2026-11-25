@@ -56,7 +56,7 @@ flowchart LR
     R1 -->|Ambiguous| R2["Stage 2: LLM Semantic Router<br/>(Groq Cloud Classifier)"]
     R1 -->|Matched| HYB
     R2 -->|Out-of-Scope| FB["Early Rejection Gate<br/>(Fallback Response)"]
-    R2 -->|Matched File(s)| HYB["Targeted Hybrid Retrieval<br/>(ChromaDB Top-10 + BM25 Top-10)"]
+    R2 -->|"Matched Files"| HYB["Targeted Hybrid Retrieval<br/>(ChromaDB Top-10 + BM25 Top-10)"]
     HYB --> RRF["Reciprocal Rank Fusion<br/>(k=60, Top-10)"]
     RRF --> MMR["MMR Re-ranking<br/>(lambda=0.7, Top-5)"]
     MMR --> CONF["Weighted Confidence Gate<br/>(0.7 * top1 + 0.3 * top2)"]
